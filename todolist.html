@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays loops</title>
+  <style>
+    body{
+      font-family: Georgia;
+      background-image: url(https://previews.123rf.com/images/mangpor2004/mangpor20041605/mangpor2004160500099/56383918-to-do-list-background-template.jpg);
+      background-size: cover;
+      
+      height: auto;
+    }
+    .grid-1{
+      margin: 250px 400px;
+    }
+    p{
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: underline;
+      color: rgb(71, 64, 68);
+    }
+    .list, .grid{
+      display: grid;
+      grid-template-columns: 200px 137px 100px;
+      column-gap: 10px;
+      row-gap: 10px;
+    }
+    .button-add{
+      padding: 10px ;
+      background-color: rgb(0, 164, 0);
+      color: white;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+    }
+    .button-del{
+      padding: 10px ;
+      background-color: rgb(175, 6, 6);
+      color: white;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+    }
+    input{
+      border: 1px solid black;
+      border-radius: 5px;
+      font-size: 14px;
+      
+    }
+  </style>
+</head>
+<body>  
+  
+    <div class="grid-1">
+      <!--<p>To do List</p>-->
+      <div class="grid">
+        <input class="input" type="text" placeholder="Todo name">
+        <input type="date" class="date-input">
+        <button onclick="add();" class="button-add">Add</button>
+        <div class="list"></div>
+      </div>
+    </div>
+
+
+  <script>
+
+  const TodoList = JSON.parse(localStorage.getItem('TodoList')) || [{
+    name: 'make dinner',
+    dueDate: '2022-12-22'
+  }, {
+    name: 'wash dishes',
+    dueDate: '2022-12-22'
+  }];
+    addList();
+    function addList(){
+      
+      let todoHTML = '';
+      for(let i=0; i< TodoList.length; i++){
+
+        const todo = TodoList[i];
+        const { name,dueDate } = todo ;
+        const html = 
+        `<div style="margin:8px 2px;">${name} </div>
+        <div style="margin:8px 2px;">${dueDate}</div>
+        <button onclick="
+            TodoList.splice(${i},1);
+            addList();saveToStorage();" class="button-del">Delete</button>
+        `;
+        todoHTML += html;
+      }
+      document.querySelector('.list').innerHTML = todoHTML;
+      
+    }
+
+    function add() {
+      const nameInput = document.querySelector('.input');
+      const name = nameInput.value;
+      nameInput.value = '';
+
+      const dateInput = document.querySelector('.date-input');
+      const dueDate = dateInput.value;
+      //dateInput.value = '';
+
+      TodoList.push({
+        name,
+        dueDate
+      });
+
+      addList(); 
+      saveToStorage();
+    }
+
+    function saveToStorage() {
+      localStorage.setItem('TodoList', JSON.stringify(TodoList));
+    }
+
+
+
+      /*const input = document.querySelector('.input');
+        const name = input.value;
+        TodoList.push(name);
+        console.log(TodoList);
+        const array = [2,4,5];
+        let res = 0;
+        for(let i=0;i<array.length;i++){
+          const num = array[i];
+          res += num; 
+        }
+      console.log(res);
+
+      const doubleArray = [];
+      for(let i=0;i<array.length;i++){
+          const num = array[i];
+          doubleArray.push(num * 2); 
+        }
+      console.log(doubleArray);
+*/
+  </script>
+</body>
+</html>
