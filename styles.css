@@ -1,0 +1,44 @@
+body{
+    font-family: Georgia;
+    background-image: url(https://previews.123rf.com/images/mangpor2004/mangpor20041605/mangpor2004160500099/56383918-to-do-list-background-template.jpg);
+    background-size: cover;
+    
+    height: auto;
+  }
+  .grid-1{
+    margin: 250px 400px;
+  }
+  p{
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgb(71, 64, 68);
+  }
+  .list, .grid{
+    display: grid;
+    grid-template-columns: 200px 137px 100px;
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  .button-add{
+    padding: 10px ;
+    background-color: rgb(0, 164, 0);
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+  .button-del{
+    padding: 10px ;
+    background-color: rgb(175, 6, 6);
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+  input{
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    
+  }
